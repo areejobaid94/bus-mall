@@ -98,7 +98,11 @@ let renderResult = function () {
     appendImgs(imgsArr, true);
 };
 let restartVote = function (params) {
-    init();
+    document.getElementById('button-result').style.backgroundColor = '#e0d5d5';
+    setTimeout(function(){ 
+        document.getElementById('button-result').style.backgroundColor = 'gray';
+        init();
+    }, 100);
 };
 init();
 
