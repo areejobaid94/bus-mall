@@ -19,7 +19,8 @@ let init = function(){
     totalShown = 0;
     imgsDiv.innerHTML = '';
     document.getElementById('button-result').style.display = 'none';
-    document.getElementById('vote').innerText = 'Vote By Clicking On The Image';
+    document.getElementById('vote').innerText = `Vote By Clicking On The Image.`;
+    // document.getElementById('total-round').innerText = `Total Rounds: ${totalShown}`;
     for(let i = 0; i < imgsName.length; i++){
         new img(imgsName[i]);
     };
@@ -41,6 +42,7 @@ let renderRandomImg = function () {
         document.getElementById('button-result').style.display = 'block';
         imgsDiv.removeEventListener('click', afterClickImg);
         document.getElementById('vote').innerText = 'The Result!';
+        document.getElementById('total-round').innerText = ``;
         renderResult();
     }
 };
@@ -77,6 +79,7 @@ let appendImgs = function (imgsArray, isRes) {
             card.appendChild(persant);
         }else{
             imgsArray[i].countShown  = imgsArray[i].countShown + 1;
+            document.getElementById('total-round').innerText = `Total Rounds: ${totalShown + 1}`;
         }
         column.appendChild(card);
         row.appendChild(column);
