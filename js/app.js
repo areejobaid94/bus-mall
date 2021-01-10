@@ -20,7 +20,7 @@ let init = function(){
     imgsDiv.innerHTML = '';
     document.getElementById('button-result').style.display = 'none';
     document.getElementById('vote').innerText = `Vote By Clicking On The Image.`;
-    // document.getElementById('total-round').innerText = `Total Rounds: ${totalShown}`;
+    document.getElementById('view-results').style.display = 'none';
     for(let i = 0; i < imgsName.length; i++){
         new img(imgsName[i]);
     };
@@ -39,11 +39,8 @@ let renderRandomImg = function () {
         appendImgs([imgsArr[firstImgIndex],imgsArr[secondImgIndex],imgsArr[thirdImgIndex]]);
         totalShown ++;
     }else{
-        document.getElementById('button-result').style.display = 'block';
-        imgsDiv.removeEventListener('click', afterClickImg);
         document.getElementById('vote').innerText = 'The Result!';
-        document.getElementById('total-round').innerText = ``;
-        renderResult();
+        document.getElementById('view-results').style.display = 'block';
     }
 };
 
@@ -97,7 +94,12 @@ let afterClickImg = function (event) {
     }, 100);
 };
 
-let renderResult = function () {
+let viewResults = function () {
+    document.getElementById('button-result').style.display = 'block';
+    imgsDiv.removeEventListener('click', afterClickImg);
+    document.getElementById('vote').innerText = 'The Result!';
+    document.getElementById('total-round').innerText = ``;
+    document.getElementById('view-results').style.display = 'none';
     appendImgs(imgsArr, true);
 };
 let restartVote = function (params) {
