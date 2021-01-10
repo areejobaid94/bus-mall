@@ -15,6 +15,11 @@ let img = function (name){
 }
 
 let init = function(){
+    imgsArr = [];
+    totalShown = 0;
+    imgsDiv.innerHTML = '';
+    document.getElementById('button-result').style.display = 'none';
+    document.getElementById('vote').innerText = 'Vote By Clicking On The Image';
     for(let i = 0; i < imgsName.length; i++){
         new img(imgsName[i]);
     };
@@ -33,14 +38,15 @@ let renderRandomImg = function () {
         appendImgs([imgsArr[firstImgIndex],imgsArr[secondImgIndex],imgsArr[thirdImgIndex]]);
         totalShown ++;
     }else{
+        document.getElementById('button-result').style.display = 'block';
         imgsDiv.removeEventListener('click', afterClickImg);
+        document.getElementById('vote').innerText = 'The Result!';
         renderResult();
     }
 };
 
 let appendImgs = function (imgsArray, isRes) {
     for (let i = 0; i < imgsArray.length; i++) {
-        imgsArray[i].countShown ++;
         let row = document.createElement('div'); 
         row.setAttribute('class', 'row');
         row.setAttribute('id',`row-${imgsArray[i].index}`);
@@ -69,6 +75,8 @@ let appendImgs = function (imgsArray, isRes) {
             card.appendChild(clickedP);
             card.appendChild(shownP);
             card.appendChild(persant);
+        }else{
+            imgsArray[i].countShown  = imgsArray[i].countShown + 1;
         }
         column.appendChild(card);
         row.appendChild(column);
@@ -89,6 +97,8 @@ let afterClickImg = function (event) {
 let renderResult = function () {
     appendImgs(imgsArr, true);
 };
-
+let restartVote = function (params) {
+    init();
+};
 init();
 
