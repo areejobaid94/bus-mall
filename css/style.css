@@ -132,6 +132,10 @@ footer {
     padding: 1%;
 }
 
+.card:hover {
+    background-color: white;
+}
+
 @media screen and (max-width: 600px) {
     .column {
         width: 100%;

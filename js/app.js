@@ -189,6 +189,8 @@ let viewResults = function () {
     document.getElementById('total-round').innerText = ``;
     document.getElementById('view-results').style.display = 'none';
     document.getElementById('hideAndShow-Charts').style.display = 'block';
+    document.getElementById('all-Chart-results').style.display = 'block';
+
     appendImgs(imgsArr, true);
     viewChart(numOfshownArr, 'bar', 'result-shown');
     viewChart(numOfClickArr, 'pie', 'result-clicked');
