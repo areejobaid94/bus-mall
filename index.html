@@ -28,10 +28,29 @@
             <button id = 'view-results' onclick="viewResults()">View Results</button>
             <button id="button-result" onclick="restartVote()">Restart</button>
         </div>
+        <section id = 'all-Chart-results'>
+            <h1 id = 'result-head'>Charts</h1>
+            <div class="result-chart-class">
+                <canvas id="result-shown" ></canvas>
+                <h1>Chart For Num Of Clicked</h1>
+            </div>
+            <div class="result-chart-class">
+                <canvas id="result-clicked" ></canvas>
+                <h1>Chart For Num Of Shown</h1>
+            </div>
+            <div class="result-chart-class">
+                <canvas id="result-per" ></canvas>
+                <h1>Chart For C/S%</h1>
+            </div>
+        </section>
+        <button id = 'hideAndShow-Charts' onclick="hideResults('all-Chart-results','hideAndShow-Charts')">Hide Charts</button>
+    </main>
+    </main>
     </main>
     <footer>
         <h1>Contact Us: areejobaid94@gmail.com</h1>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script src="js/app.js"></script>
 </body>
 
