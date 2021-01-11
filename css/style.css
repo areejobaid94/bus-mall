@@ -134,6 +134,7 @@ footer {
 
 .card:hover {
     background-color: white;
+    color: gray;
 }
 
 @media screen and (max-width: 600px) {
