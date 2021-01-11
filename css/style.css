@@ -12,7 +12,7 @@ header{
     padding: 15px;
     background-color: gray;
     color: white;
-    margin-bottom: 90px;
+    margin-bottom: 81px;
 }
 * {
     box-sizing: border-box;
@@ -20,7 +20,7 @@ header{
 
 .column {
     float: left;
-    width: 33%;
+    width: 25%;
     padding: 0 10px;
 }
   
@@ -33,13 +33,7 @@ header{
     width: 65%;
 }
 
-@media screen and (max-width: 600px) {
-    .column {
-        width: 100%;
-        display: block;
-        margin-bottom: 20px;
-    }
-}
+
   
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -83,7 +77,7 @@ footer {
     height: 70px;
     text-align: center;
     padding: 30px;
-    bottom: -70px;
+    bottom: -100px;
     color: white;
 }
 #view-results{
@@ -93,7 +87,7 @@ footer {
     color: white;
     background-color: gray;
     padding: 20px;
-    margin-bottom: 80px;
+    margin-bottom: 70px;
 }
 #button-result{
     font-size: large;
@@ -102,4 +96,52 @@ footer {
     position: relative;
     left: -99px;
     bottom: 20px;
+}
+.result-chart-class{
+    width: 31%;
+    height: 200px;
+    margin: 10px;
+    display: block;
+    float: left;
+    margin-top: 100px;
+    text-align: center;
+}
+
+#all-Chart-results{
+    display: none;
+    height: 300px;
+    width: 100%;
+    text-align: center;
+}
+
+#result-head{
+    position: relative;
+    top: 1850px;
+    left: -560px;
+    font-size: x-large;
+    font-style: italic;
+}
+
+#hideAndShow-Charts{
+    position: relative;
+    top: 1830px;
+    left: -496px;
+    font-size: large;
+    color: white;
+    background-color: gray;
+    padding: 1%;
+}
+
+@media screen and (max-width: 600px) {
+    .column {
+        width: 100%;
+        display: block;
+        margin-bottom: 20px;
+    }
+    .result-chart-class{
+        width: 100%;
+        margin: auto;
+        display: block;
+        margin-top: 60px;
+    }
 }
