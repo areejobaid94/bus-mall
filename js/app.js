@@ -4,6 +4,7 @@ let imgsArr = [];
 let imgsName = ['bag.jpg','banana.jpg','bathroom.jpg','boots.jpg','breakfast.jpg','bubblegum.jpg','chair.jpg','cthulhu.jpg','dog-duck.jpg','dragon.jpg','pen.jpg','pet-sweep.jpg','scissors.jpg','shark.jpg','sweep.png','tauntaun.jpg','unicorn.jpg','usb.gif','water-can.jpg','wine-glass.jpg'];
 let imgsDiv = document.getElementById('cards-div');
 let totalShown = 0;
+let allNames = [];
 
 let img = function (name){
     this.name = name.split('.')[0];
@@ -12,6 +13,7 @@ let img = function (name){
     this.countClicked = 0;
     this.index = imgsArr.length;
     imgsArr.push(this);
+    allNames.push
 }
 
 let init = function(){
