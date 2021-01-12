@@ -24,7 +24,7 @@ let img = function (name) {
 let init = function () {
     do { numOfImg = Number(prompt('How many pictures do you want to display at one time, 3, 4 or 5')) }
     while (isNaN(numOfImg) || numOfImg > 5 || numOfImg < 3);
-    imgsArr = [];
+    checkIfImageInLS();
     totalShown = 0;
     imgsDiv.innerHTML = '';
     document.getElementById('button-result').style.display = 'none';
@@ -32,9 +32,7 @@ let init = function () {
     document.getElementById('view-results').style.display = 'none';
     document.getElementById('all-Chart-results').style.display = 'none'
     document.getElementById('hideAndShow-Charts').style.display = 'none';
-    for (let i = 0; i < imgsName.length; i++) {
-        new img(imgsName[i]);
-    };
+    localStorage.setItem('allNames',JSON.stringify(allNames))
     renderRandomImg();
     imgsDiv.addEventListener('click', afterClickImg);
 };
@@ -52,6 +50,7 @@ let renderRandomImg = function () {
         shownArray = imgsToRenderArr.slice();
         appendImgs(imgsToRenderArr);
         totalShown++;
+        localStorage.setItem('imgsArr',JSON.stringify(imgsArr));
     } else {
         document.getElementById('vote').innerText = 'The Result!';
         document.getElementById('view-results').style.display = 'block';
@@ -216,5 +215,27 @@ let hideResults = function (divId, buttonId) {
         div.style.display = 'none';
     };
 }
+
+let checkIfImageInLS = function(){
+    imgsArr = localStorage.getItem('imgsArr') == null ? createArr() : JSON.parse(localStorage.getItem('imgsArr'));
+    allNames =  localStorage.getItem('allNames') == null ? createNameArr() : JSON.parse(localStorage.getItem('allNames'));
+}
+
+let createArr = function(){
+    for (let i = 0; i < imgsName.length; i++) {
+        new img(imgsName[i]);
+    };
+}
+
+let createNameArr = function(){
+    for (let i = 0; i < imgsName.length; i++) {
+        allNames.push(imgsArr.name);
+    };
+}
+
+let deleteLS = function(){
+    localStorage.clear();
+}
+
 init();
 
