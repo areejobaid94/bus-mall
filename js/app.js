@@ -24,7 +24,10 @@ let img = function (name) {
 let init = function () {
     do { numOfImg = Number(prompt('How many pictures do you want to display at one time, 3, 4 or 5')) }
     while (isNaN(numOfImg) || numOfImg > 5 || numOfImg < 3);
-    imgsArr = [];
+    deleteLS();
+    checkIfImageInLS();
+    numOfshownArr = [];
+    numOfClickArr = [];
     totalShown = 0;
     imgsDiv.innerHTML = '';
     document.getElementById('button-result').style.display = 'none';
@@ -32,9 +35,7 @@ let init = function () {
     document.getElementById('view-results').style.display = 'none';
     document.getElementById('all-Chart-results').style.display = 'none'
     document.getElementById('hideAndShow-Charts').style.display = 'none';
-    for (let i = 0; i < imgsName.length; i++) {
-        new img(imgsName[i]);
-    };
+    localStorage.setItem('allNames',JSON.stringify(allNames))
     renderRandomImg();
     imgsDiv.addEventListener('click', afterClickImg);
 };
@@ -52,6 +53,7 @@ let renderRandomImg = function () {
         shownArray = imgsToRenderArr.slice();
         appendImgs(imgsToRenderArr);
         totalShown++;
+        localStorage.setItem('imgsArr',JSON.stringify(imgsArr));
     } else {
         document.getElementById('vote').innerText = 'The Result!';
         document.getElementById('view-results').style.display = 'block';
@@ -90,7 +92,7 @@ let appendImgs = function (imgsArray, isRes) {
             card.appendChild(persant);
             numOfshownArr.push(imgsArray[i].countShown);
             numOfClickArr.push(imgsArray[i].countClicked);
-            persArr.push((imgsArray[i].countClicked / imgsArray[i].countShown).toFixed(2));
+            persArr.push(Number((imgsArray[i].countClicked / imgsArray[i].countShown).toFixed(2)));
         } else {
             column.style.width = (100 / numOfImg) + '%';
             imgsArray[i].countShown = imgsArray[i].countShown + 1;
@@ -116,6 +118,7 @@ let afterClickImg = function (event) {
 
 let viewChart = function (resultArr, typeOfChart, id) {
     var ctx = document.getElementById(id).getContext('2d');
+    console.log(resultArr);
     var myChart = new Chart(ctx, {
         type: typeOfChart,
         data: {
@@ -216,5 +219,41 @@ let hideResults = function (divId, buttonId) {
         div.style.display = 'none';
     };
 }
+
+let checkIfImageInLS = function(){
+    imgsArr = localStorage.getItem('imgsArr') == null ? createArr() : JSON.parse(localStorage.getItem('imgsArr'));
+    allNames =  localStorage.getItem('allNames') == null ? allNames || createNameArr() : JSON.parse(localStorage.getItem('allNames'));
+}
+
+let createArr = function(){
+    imgsArr = [];
+    allNames = [];
+    for (let i = 0; i < imgsName.length; i++) {
+        new img(imgsName[i]);
+    };
+    return imgsArr;
+}
+
+let createNameArr = function(){
+    for (let i = 0; i < imgsArr.length; i++) {
+        allNames.push(imgsArr[i].name);
+    };
+    return allNames;
+}
+
+let deleteLS = function(){
+    let deleteLocalStorage = prompt('Do you want to delete the localStorage before, yes of no')
+    if(deleteLocalStorage.toLocaleLowerCase() == 'yes'){
+        localStorage.clear();
+        alert('ok!')
+    }
+    else if(deleteLocalStorage.toLocaleLowerCase() == 'no'){
+        alert('ok!')
+    }
+    else{
+        deleteLS();
+    }
+}
+
 init();
 
