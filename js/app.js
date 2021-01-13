@@ -21,6 +21,25 @@ let img = function (name) {
     allNames.push(this.name);
 }
 
+let scrollWindowEvent = function(){
+    window.addEventListener("scroll", function(){ // or window.addEventListener("scroll"....
+       var st = window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
+       console.log(st);
+       let a =  document.getElementById('fixedbutton');
+        if (st > 1790){
+           a.textContent = 'Go To Results ⇧';
+           a.href = '#results';
+           console.log(a);
+       } else {
+            a.textContent = 'Go To Charts ⇩';
+            a.href = '#result-shown';
+       }
+    });
+}
+
+
+scrollWindowEvent();
+
 let init = function () {
     do { numOfImg = Number(prompt('How many pictures do you want to display at one time, 3, 4 or 5')) }
     while (isNaN(numOfImg) || numOfImg > 5 || numOfImg < 3);
@@ -30,6 +49,7 @@ let init = function () {
     numOfClickArr = [];
     totalShown = 0;
     imgsDiv.innerHTML = '';
+    document.getElementById('fixedbutton').style.display = 'none';
     document.getElementById('button-result').style.display = 'none';
     document.getElementById('vote').innerText = `Vote By Clicking On The Card.`;
     document.getElementById('view-results').style.display = 'none';
@@ -193,6 +213,7 @@ let viewResults = function () {
     document.getElementById('view-results').style.display = 'none';
     document.getElementById('hideAndShow-Charts').style.display = 'block';
     document.getElementById('all-Chart-results').style.display = 'block';
+    document.getElementById('fixedbutton').style.display = 'block';
 
     appendImgs(imgsArr, true);
     viewChart(numOfshownArr, 'bar', 'result-shown');
@@ -256,4 +277,5 @@ let deleteLS = function(){
 }
 
 init();
+
 

@@ -137,6 +137,19 @@ footer {
     color: gray;
     cursor: pointer;
 }
+button:hover{
+    cursor: pointer;
+}
+#fixedbutton {
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.2);
+    position: fixed;
+    bottom: 398px;
+    right: 110px; 
+    text-decoration:none;
+    color:white;
+    background-color: gray;
+    padding: 1%;
+}
 
 @media screen and (max-width: 600px) {
     .column {
